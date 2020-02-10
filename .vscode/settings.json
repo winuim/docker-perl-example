@@ -1,0 +1,6 @@
+{
+    "perl-toolbox.syntax.includePaths": [
+        "$workspaceRoot/lib",
+        "$workspaceRoot/local/lib/perl5"
+    ]
+}
