@@ -22,7 +22,7 @@ RUN apt-get update \
     #
     # Verify git, process tools, lsb-release (common in install instructions for CLIs) installed
     && apt-get -y install git iproute2 procps lsb-release \
-    carton \
+    locales carton vim \
     #
     # Create a non-root user to use if preferred - see https://aka.ms/vscode-remote/containers/non-root-user.
     && groupadd --gid $USER_GID $USERNAME \
@@ -31,6 +31,12 @@ RUN apt-get update \
     && apt-get install -y sudo \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME\
     && chmod 0440 /etc/sudoers.d/$USERNAME \
+    #
+    # locale setup
+    && sed -i 's/^# ja_JP.UTF-8/ja_JP.UTF-8/g' /etc/locale.gen \
+    && locale-gen ja_JP.UTF-8 \
+    && dpkg-reconfigure locales \
+    && update-locale LANG=ja_JP.UTF-8 \
     #
     # Clean up
     && apt-get autoremove -y \

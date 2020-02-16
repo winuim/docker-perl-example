@@ -15,6 +15,7 @@ END_OF_HTML
 };
 
 builder {
-    mount "/" => Plack::App::WrapCGI->new(script => './test.cgi', execute => 1)->to_app;
+    mount "/" => Plack::App::WrapCGI->new(script => './public_html/test.cgi', execute => 1)->to_app;
+    mount "/css" => Plack::App::File->new(root => './public_html/css')->to_app;
     mount "/env" => $app;
 };

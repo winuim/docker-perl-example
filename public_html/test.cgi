@@ -1,5 +1,7 @@
 #!/usr/local/bin/perl
 use Log::Minimal;
+use Sub::Name;
+
 
 print "Content-type: text/html\n\n";
 print "Hello CGI\n";
